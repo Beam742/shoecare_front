@@ -277,7 +277,11 @@ export default function AdminOrders() {
               {isViewingProof ? (
                 <>
                   <h2 className="text-xl font-semibold mb-4">Proof of Payment</h2>
-                  <img src={`http://localhost:3000${selectedOrder.bukti}`} alt="Proof of Payment" className="mb-4" />
+                  <img
+                    src={`${import.meta.env.VITE_API_URL}${selectedOrder.bukti}`}
+                    alt="Proof of Payment"
+                    className="mb-4"
+                  />
                 </>
               ) : (
                 <>
