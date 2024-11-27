@@ -54,6 +54,9 @@ export default function AdminCustomers() {
   }
 
   const handleDeleteCustomer = async (id) => {
+    const confirmDelete = window.confirm("Apakah Anda yakin ingin menghapus pelanggan ini?")
+    if (!confirmDelete) return
+
     try {
       await axios.delete(`${import.meta.env.VITE_API_URL}/users/${id}`)
       fetchCustomers()
