@@ -30,7 +30,7 @@ export default function Navbar() {
               }`
             }
           >
-            Dashboard
+            Beranda
           </NavLink>
           <NavLink
             to="/user/orders"
@@ -40,7 +40,7 @@ export default function Navbar() {
               }`
             }
           >
-            Orders
+            Pesanan
           </NavLink>
           <NavLink
             to="/user/profile"
@@ -50,7 +50,7 @@ export default function Navbar() {
               }`
             }
           >
-            Profile
+            Profil
           </NavLink>
           <button
             className="px-3 py-2 rounded-md text-sm font-medium text-red-600 hover:bg-red-100 flex items-center"
@@ -62,7 +62,7 @@ export default function Navbar() {
             }}
           >
             <FaSignOutAlt className="mr-1" />
-            Logout
+            Keluar
           </button>
         </div>
       </div>
@@ -97,7 +97,7 @@ export default function Navbar() {
             }
             onClick={toggleMenu}
           >
-            Orders
+            Pesanan
           </NavLink>
           <NavLink
             to="/user/profile"
@@ -108,7 +108,7 @@ export default function Navbar() {
             }
             onClick={toggleMenu}
           >
-            Profile
+            Profil
           </NavLink>
           <button
             className="w-full text-center py-2 rounded-lg text-red-600 hover:bg-red-100 flex items-center justify-center"
@@ -121,7 +121,7 @@ export default function Navbar() {
             }}
           >
             <FaSignOutAlt className="mr-1" />
-            Logout
+            Keluar
           </button>
         </div>
       </div>

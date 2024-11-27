@@ -146,7 +146,7 @@ export default function AdminOrders() {
       <AdminSidebar />
 
       <div className="flex-1 p-6 bg-gray-100 min-h-screen">
-        <h1 className="text-3xl font-semibold text-gray-800 mb-6">Orders</h1>
+        <h1 className="text-3xl font-semibold text-gray-800 mb-6">Pesanan</h1>
 
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4">Daftar Sepatu untuk Dijemput</h2>
@@ -154,11 +154,11 @@ export default function AdminOrders() {
             <table className="w-full text-left">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="py-2 px-4 font-semibold">Invoice No</th>
-                  <th className="py-2 px-4 font-semibold">Phone</th>
-                  <th className="py-2 px-4 font-semibold">Service</th>
+                  <th className="py-2 px-4 font-semibold">No Invoice</th>
+                  <th className="py-2 px-4 font-semibold">Telepon</th>
+                  <th className="py-2 px-4 font-semibold">Layanan</th>
                   <th className="py-2 px-4 font-semibold">Alamat</th>
-                  <th className="py-2 px-4 font-semibold">Actions</th>
+                  <th className="py-2 px-4 font-semibold">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -175,7 +175,7 @@ export default function AdminOrders() {
                           onClick={() => openModal(order)}
                           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded h-10 text-sm w-40"
                         >
-                          Update Status
+                          Perbarui Status
                         </button>
                       </td>
                     </tr>
@@ -197,7 +197,7 @@ export default function AdminOrders() {
             <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-4">
               <input
                 type="text"
-                placeholder="Search by Customer or Invoice No"
+                placeholder="Cari berdasarkan Pelanggan atau No Invoice"
                 value={searchTerm}
                 onChange={handleSearch}
                 className="flex-1 px-3 py-2 border rounded shadow-sm focus:outline-none focus:shadow-outline"
@@ -207,7 +207,7 @@ export default function AdminOrders() {
                 onChange={handleFilterStatus}
                 className="flex-1 px-3 py-2 border rounded shadow-sm focus:outline-none focus:shadow-outline"
               >
-                <option value="">All Statuses</option>
+                <option value="">Semua Status</option>
                 {statusOptions.map((status) => (
                   <option key={status.id} value={status.nama_status}>
                     {status.nama_status}
@@ -218,13 +218,13 @@ export default function AdminOrders() {
             <table className="w-full text-left">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="py-2 px-4 font-semibold">Invoice No</th>
-                  <th className="py-2 px-4 font-semibold">Customer</th>
-                  <th className="py-2 px-4 font-semibold">Service</th>
+                  <th className="py-2 px-4 font-semibold">No Invoice</th>
+                  <th className="py-2 px-4 font-semibold">Pelanggan</th>
+                  <th className="py-2 px-4 font-semibold">Layanan</th>
                   <th className="py-2 px-4 font-semibold">Status</th>
-                  <th className="py-2 px-4 font-semibold">Date</th>
-                  <th className="py-2 px-4 font-semibold">Amount</th>
-                  <th className="py-2 px-4 font-semibold">Actions</th>
+                  <th className="py-2 px-4 font-semibold">Tanggal</th>
+                  <th className="py-2 px-4 font-semibold">Harga</th>
+                  <th className="py-2 px-4 font-semibold">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -273,28 +273,28 @@ export default function AdminOrders() {
 
         {selectedOrder && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div className="bg-white rounded-lg shadow-lg p-6 w-1/2 max-h-screen overflow-y-auto">
+            <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md md:max-w-lg lg:max-w-xl max-h-screen overflow-y-auto mx-4">
               {isViewingProof ? (
                 <>
-                  <h2 className="text-xl font-semibold mb-4">Proof of Payment</h2>
+                  <h2 className="text-xl font-semibold mb-4">Bukti Pembayaran</h2>
                   <img
                     src={`${import.meta.env.VITE_API_URL}${selectedOrder.bukti}`}
-                    alt="Proof of Payment"
+                    alt="Bukti Pembayaran"
                     className="mb-4"
                   />
                 </>
               ) : (
                 <>
-                  <h2 className="text-xl font-semibold mb-4">Edit Order Status</h2>
+                  <h2 className="text-xl font-semibold mb-4">Edit Status Pesanan</h2>
                   <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2">Select New Status:</label>
+                    <label className="block text-gray-700 text-sm font-bold mb-2">Pilih Status Baru:</label>
                     <select
                       value={newStatusId || ""}
                       onChange={handleStatusChange}
                       className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                     >
                       <option value="" disabled>
-                        Select a status
+                        Pilih status
                       </option>
                       {statusOptions.map((status) => (
                         <option key={status.id} value={status.id}>
@@ -307,12 +307,12 @@ export default function AdminOrders() {
                     onClick={updateOrderStatus}
                     className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 mr-2"
                   >
-                    Update Status
+                    Perbarui Status
                   </button>
                 </>
               )}
               <button onClick={closeModal} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">
-                Close
+                Tutup
               </button>
             </div>
           </div>
@@ -320,7 +320,7 @@ export default function AdminOrders() {
 
         {isPrintModalOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div className="bg-white rounded-lg shadow-lg p-6 w-1/2 max-h-screen overflow-y-auto">
+            <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md md:max-w-lg lg:max-w-xl max-h-screen overflow-y-auto mx-4">
               <h2 className="text-xl font-semibold mb-4 text-center">Invoice</h2>
               <div id="invoiceContent" className="mb-4">
                 <InvoiceContent order={printOrder} />

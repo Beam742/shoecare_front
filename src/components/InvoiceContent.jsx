@@ -20,15 +20,17 @@ const InvoiceContent = ({ order }) => {
 
       <div className="grid grid-cols-2 gap-4 p-6 bg-gray-100">
         <div>
-          <h3 className="text-lg font-semibold mb-2">Bill To:</h3>
+          <h3 className="text-lg font-semibold mb-2">Pelanggan:</h3>
           <p className="font-medium">{order.customerName}</p>
           <p className="text-gray-600">{order.customerEmail}</p>
           <p className="text-gray-600">{order.customerPhone}</p>
           <p className="text-gray-600">{order.customerAddress}</p>
         </div>
         <div>
-          <h3 className="text-lg font-semibold mb-2">Invoice Details:</h3>
-          <p>Order Date: {formatDate(order.orderDate)}</p>
+          <h3 className="text-lg font-semibold mb-2">Detail Invoice:</h3>
+          <p>Nama Sepatu: {order.nama_sepatu}</p>
+          <p>Pemesanan: {formatDate(order.orderDate)}</p>
+          <p>Dicetak: {formatDate(new Date().toISOString())}</p>
         </div>
       </div>
 
@@ -36,8 +38,8 @@ const InvoiceContent = ({ order }) => {
         <table className="w-full border-collapse mb-6">
           <thead>
             <tr className="bg-gray-200">
-              <th className="py-3 px-4 text-left">Service</th>
-              <th className="py-3 px-4 text-right">Amount</th>
+              <th className="py-3 px-4 text-left">Layanan</th>
+              <th className="py-3 px-4 text-right">Harga</th>
             </tr>
           </thead>
           <tbody>

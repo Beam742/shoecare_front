@@ -19,12 +19,12 @@ export default function Auth() {
             <GiConverseShoe alt="ShoeCare Logo" className="mr-2 text-2xl text-blue-600" />
             <span className="text-xl font-bold text-blue-600">ShoeCare</span>
           </Link>
-          <h2 className="text-2xl font-bold text-center mb-4">{isLogin ? "Welcome Back" : "Create Account"}</h2>
+          <h2 className="text-2xl font-bold text-center mb-4">{isLogin ? "Selamat Datang" : "Buat Akun"}</h2>
           {isLogin ? <Login /> : <Register />}
         </div>
         <div className="px-8 py-4 bg-gray-50 border-t border-gray-200 flex justify-center">
           <button onClick={toggleForm} className="text-sm text-blue-600 hover:underline focus:outline-none">
-            {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
+            {isLogin ? "Belum punya akun? Buat akun" : "Sudah punya akun? Masuk"}
           </button>
         </div>
       </div>

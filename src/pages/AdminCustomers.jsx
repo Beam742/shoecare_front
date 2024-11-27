@@ -89,19 +89,19 @@ export default function AdminCustomers() {
       <AdminSidebar />
 
       <div className="flex-1 p-6 bg-gray-100 min-h-screen">
-        <h1 className="text-3xl font-semibold text-gray-800 mb-6">Customers</h1>
+        <h1 className="text-3xl font-semibold text-gray-800 mb-6">Pelanggan</h1>
 
         <div className="bg-white rounded-lg shadow-md p-6">
           <div className="flex justify-between items-center mb-4">
             <div className="relative">
               <input
                 type="text"
-                placeholder="Search customers..."
+                placeholder="Cari pelanggan..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
-              <FaSearch className="absolute left-3 top-3 text-gray-400 z-10" />
+              <FaSearch className="absolute left-3 top-3 text-gray-400" />
             </div>
           </div>
 
@@ -109,12 +109,12 @@ export default function AdminCustomers() {
             <table className="w-full text-left">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="py-2 px-4 font-semibold">Customer ID</th>
-                  <th className="py-2 px-4 font-semibold">Name</th>
+                  <th className="py-2 px-4 font-semibold">ID Pelanggan</th>
+                  <th className="py-2 px-4 font-semibold">Nama</th>
                   <th className="py-2 px-4 font-semibold">Email</th>
-                  <th className="py-2 px-4 font-semibold">Phone</th>
+                  <th className="py-2 px-4 font-semibold">Telepon</th>
                   <th className="py-2 px-4 font-semibold">Admin</th>
-                  <th className="py-2 px-4 font-semibold">Actions</th>
+                  <th className="py-2 px-4 font-semibold">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -127,20 +127,24 @@ export default function AdminCustomers() {
                     </td>
                     <td className="py-2 px-4">{customer.email}</td>
                     <td className="py-2 px-4">{customer.phone}</td>
-                    <td className="py-2 px-4">{customer.is_admin ? "Yes" : "No"}</td>
+                    <td className="py-2 px-4">{customer.is_admin ? "Ya" : "Tidak"}</td>
                     <td className="py-2 px-4">
-                      <button
-                        onClick={() => openEditModal(customer)}
-                        className="text-blue-500 hover:text-blue-700 mr-2"
-                      >
-                        <FaEdit />
-                      </button>
-                      <button
-                        onClick={() => handleDeleteCustomer(customer.id)}
-                        className="text-red-500 hover:text-red-700"
-                      >
-                        <FaTrash />
-                      </button>
+                      {localStorage.getItem("userId") != customer.id && (
+                        <>
+                          <button
+                            onClick={() => openEditModal(customer)}
+                            className="text-blue-500 hover:text-blue-700 mr-2"
+                          >
+                            <FaEdit />
+                          </button>
+                          <button
+                            onClick={() => handleDeleteCustomer(customer.id)}
+                            className="text-red-500 hover:text-red-700"
+                          >
+                            <FaTrash />
+                          </button>
+                        </>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -170,10 +174,10 @@ export default function AdminCustomers() {
 
         {isModalOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white rounded-lg shadow-lg p-6 w-1/2 max-h-screen overflow-y-auto">
-              <h2 className="text-xl font-semibold mb-4">Edit Customer</h2>
+            <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md md:max-w-lg lg:max-w-xl max-h-screen overflow-y-auto mx-4">
+              <h2 className="text-xl font-semibold mb-4">Edit Pelanggan</h2>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">Full Name</label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">Nama Lengkap</label>
                 <input
                   type="text"
                   value={editingCustomer.full_name}
@@ -191,7 +195,7 @@ export default function AdminCustomers() {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">Phone</label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">Telepon</label>
                 <input
                   type="text"
                   value={editingCustomer.phone}
@@ -206,18 +210,18 @@ export default function AdminCustomers() {
                   onChange={(e) => setEditingCustomer({ ...editingCustomer, is_admin: e.target.value })}
                   className="px-2 py-1 border rounded-md w-full"
                 >
-                  <option value={0}>No</option>
-                  <option value={1}>Yes</option>
+                  <option value={0}>Tidak</option>
+                  <option value={1}>Ya</option>
                 </select>
               </div>
               <button
                 onClick={handleEditCustomer}
                 className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mr-2"
               >
-                Save
+                Simpan
               </button>
               <button onClick={closeEditModal} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">
-                Cancel
+                Batal
               </button>
             </div>
           </div>

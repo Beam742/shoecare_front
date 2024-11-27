@@ -58,7 +58,7 @@ const AdminSidebar = () => {
               isActive("/admin/orders") ? "bg-gray-300" : "bg-white"
             }`}
           >
-            <FaClipboardList className="inline-block mr-2" /> Orders
+            <FaClipboardList className="inline-block mr-2" /> Pesanan
           </Link>
           <Link
             to="/admin/customers"
@@ -66,7 +66,7 @@ const AdminSidebar = () => {
               isActive("/admin/customers") ? "bg-gray-300" : "bg-white"
             }`}
           >
-            <FaUsers className="inline-block mr-2" /> Customers
+            <FaUsers className="inline-block mr-2" /> Pelanggan
           </Link>
           <Link
             to="/admin/settings"
@@ -74,15 +74,15 @@ const AdminSidebar = () => {
               isActive("/admin/settings") ? "bg-gray-300" : "bg-white"
             }`}
           >
-            <MdSettings className="inline-block mr-2" /> Settings
+            <MdSettings className="inline-block mr-2" /> Pengaturan
           </Link>
         </nav>
-        <div className="absolute bottom-0 w-full p-4">
+        <div className="absolute md:bottom-0 bottom-12 w-full p-4">
           <button
             onClick={handleLogout}
             className="w-full bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-200"
           >
-            <MdLogout className="inline-block mr-2" /> Logout
+            <MdLogout className="inline-block mr-2" /> Keluar
           </button>
         </div>
       </aside>

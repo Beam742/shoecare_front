@@ -44,24 +44,29 @@ export default function UserDashboard() {
     <div className="min-h-screen bg-gray-100">
       <Navbar />
       <main className="container mx-auto px-6 py-8">
-        <h1 className="text-2xl font-semibold text-gray-800 mb-6">Welcome, {fullName}</h1>
+        <h1 className="text-2xl font-semibold text-gray-800 mb-6">Selamat datang, {fullName}</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <StatCard icon={GiConverseShoe} title="Total Orders" value={stats.total_orders} color="bg-blue-500" />
+          <StatCard icon={GiConverseShoe} title="Total Pesanan" value={stats.total_orders} color="bg-blue-500" />
           <StatCard
             icon={FaHistory}
-            title="Last Order"
+            title="Pesanan Terakhir"
             value={formatDate(stats.last_order_date)}
             color="bg-green-500"
           />
-          <StatCard icon={FaClipboardList} title="Pending Orders" value={stats.pending_orders} color="bg-yellow-500" />
+          <StatCard
+            icon={FaClipboardList}
+            title="Pesanan Ter-pending"
+            value={stats.pending_orders}
+            color="bg-yellow-500"
+          />
           <StatCard
             icon={FaCreditCard}
-            title="Total Spent"
+            title="Total Pengeluaran"
             value={formatCurrency(stats.total_spent)}
             color="bg-purple-500"
           />
         </div>
-        <Orders text={"Recent Orders"} />
+        <Orders text={"Pesanan Terakhir"} />
       </main>
     </div>
   )

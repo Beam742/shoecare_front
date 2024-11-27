@@ -60,16 +60,6 @@ createRoot(document.getElementById("root")).render(
             <Route path="*" element={<Navigate to="/" />} />
           </>
         )}
-        {/* Because we are still developing, so we will use this for now */}
-        {/* <Route path="/" element={<App />} />
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/user/dashboard" element={<UserDashboard />} />
-        <Route path="/user/orders" element={<UserOrders />} />
-        <Route path="/user/profile" element={<UserProfile />} />
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="/admin/orders" element={<AdminOrders />} />
-        <Route path="/admin/customers" element={<AdminCustomers />} />
-        <Route path="/admin/settings" element={<AdminSettings />} /> */}
       </Routes>
     </BrowserRouter>
   </StrictMode>

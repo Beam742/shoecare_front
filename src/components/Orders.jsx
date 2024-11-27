@@ -85,18 +85,18 @@ const Orders = ({ text }) => {
           className="flex items-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
         >
           <FaPlus className="mr-2" />
-          Make an Order
+          Buat Pesanan
         </button>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full text-left">
           <thead>
             <tr className="bg-gray-100">
-              <th className="py-2 px-4 font-semibold">Invoice No</th>
-              <th className="py-2 px-4 font-semibold">Service</th>
+              <th className="py-2 px-4 font-semibold">No. Invoice</th>
+              <th className="py-2 px-4 font-semibold">Layanan</th>
               <th className="py-2 px-4 font-semibold">Status</th>
-              <th className="py-2 px-4 font-semibold">Date</th>
-              <th className="py-2 px-4 font-semibold">Amount</th>
+              <th className="py-2 px-4 font-semibold">Tanggal</th>
+              <th className="py-2 px-4 font-semibold">Jumlah</th>
             </tr>
           </thead>
           <tbody>
@@ -130,7 +130,7 @@ const Orders = ({ text }) => {
             ) : (
               <tr className="border-b border-gray-200">
                 <td colSpan="5" className="py-2 px-4 text-center bg-slate-200">
-                  Tidak ada data order
+                  Tidak ada data pesanan
                 </td>
               </tr>
             )}
@@ -141,12 +141,12 @@ const Orders = ({ text }) => {
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white rounded-lg shadow-md p-6 w-96">
-            <h2 className="text-xl font-semibold mb-4">Place Your Order</h2>
+            <h2 className="text-xl font-semibold mb-4">Buat Pesanan Anda</h2>
             <form onSubmit={handleSubmit}>
               <div className="grid gap-4">
                 <div>
                   <label htmlFor="nama_sepatu" className="block text-sm font-medium text-gray-700">
-                    Shoe Name
+                    Nama Sepatu
                   </label>
                   <input
                     type="text"
@@ -159,7 +159,7 @@ const Orders = ({ text }) => {
                 </div>
                 <div>
                   <label htmlFor="id_jasa" className="block text-sm font-medium text-gray-700">
-                    Service
+                    Layanan
                   </label>
                   <select
                     name="id_jasa"
@@ -175,7 +175,7 @@ const Orders = ({ text }) => {
                     required
                     className="mt-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 h-10"
                   >
-                    <option value="">Select a service</option>
+                    <option value="">Pilih layanan</option>
                     {services.map((service) => (
                       <option key={service.id} value={service.id}>
                         {service.nama_jasa}
@@ -195,9 +195,26 @@ const Orders = ({ text }) => {
                     className="mt-2 block w-full font-medium text-base border bg-slate-200 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 h-10 pl-2"
                   />
                 </div>
+                <div className="relative flex w-full p-3 pr-12 text-sm text-white bg-blue-500 rounded-md">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-5 h-5 mr-2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 2.25a9.75 9.75 0 1 0 9.75 9.75A9.75 9.75 0 0 0 12 2.25zm0 17.25a7.5 7.5 0 1 1 7.5-7.5 7.5 7.5 0 0 1-7.5 7.5zm0-13.5a1.5 1.5 0 1 1-1.5 1.5 1.5 1.5 0 0 1 1.5-1.5zm0 3.75a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 .75-.75z"
+                    />
+                  </svg>
+                  Silakan transfer uang ke rekening BCA 7293619369 atas nama PT. ShoeCare.
+                </div>
                 <div>
                   <label htmlFor="bukti" className="block text-sm font-medium text-gray-700">
-                    Proof
+                    Bukti Pembayaran
                   </label>
                   <input
                     type="file"
@@ -214,10 +231,10 @@ const Orders = ({ text }) => {
                   onClick={() => setIsOpen(false)}
                   className="mr-2 bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
                 >
-                  Cancel
+                  Batal
                 </button>
                 <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
-                  Submit Order
+                  Buat Pesanan
                 </button>
               </div>
             </form>

@@ -42,7 +42,7 @@ const AdminDashboard = () => {
       <AdminSidebar />
 
       <main className="flex-1 overflow-y-auto p-8">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-6">Dashboard Overview</h2>
+        <h2 className="text-3xl font-semibold text-gray-800 mb-6">Admin Dashboard</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow-md p-6 flex items-center">
@@ -50,7 +50,7 @@ const AdminDashboard = () => {
               <FaClipboardList className="text-white text-2xl" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-gray-700">Total Orders</h3>
+              <h3 className="text-lg font-semibold text-gray-700">Total Pesanan</h3>
               <p className="text-2xl font-bold text-gray-900">{stats.total_orders}</p>
             </div>
           </div>
@@ -59,7 +59,7 @@ const AdminDashboard = () => {
               <FaUsers className="text-white text-2xl" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-gray-700">Total Customers</h3>
+              <h3 className="text-lg font-semibold text-gray-700">Total Pelanggan</h3>
               <p className="text-2xl font-bold text-gray-900">{stats.total_customers}</p>
             </div>
           </div>
@@ -68,7 +68,7 @@ const AdminDashboard = () => {
               <FaMoneyBillWave className="text-white text-2xl" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-gray-700">Total Revenue</h3>
+              <h3 className="text-lg font-semibold text-gray-700">Total Pendapatan</h3>
               <p className="text-2xl font-bold text-gray-900">Rp {stats.total_revenue}</p>
             </div>
           </div>
@@ -77,29 +77,29 @@ const AdminDashboard = () => {
               <GiConverseShoe className="text-white text-2xl" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-gray-700">Shoes Cleaned</h3>
+              <h3 className="text-lg font-semibold text-gray-700">Sepatu Dikerjakan</h3>
               <p className="text-2xl font-bold text-gray-900">{stats.shoes_cleaned}</p>
             </div>
           </div>
         </div>
 
-        {/* Recent Orders */}
+        {/* Pesanan Terbaru */}
         <div className="bg-white rounded-lg shadow-md p-6">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-xl font-semibold text-gray-800">Recent Orders</h3>
+            <h3 className="text-xl font-semibold text-gray-800">Pesanan Terbaru</h3>
             <Link to="/admin/orders" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
-              View All
+              Lihat Semua
             </Link>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="py-2 px-4 font-semibold">Order ID</th>
-                  <th className="py-2 px-4 font-semibold">Customer</th>
-                  <th className="py-2 px-4 font-semibold">Service</th>
+                  <th className="py-2 px-4 font-semibold">ID Pesanan</th>
+                  <th className="py-2 px-4 font-semibold">Pelanggan</th>
+                  <th className="py-2 px-4 font-semibold">Layanan</th>
                   <th className="py-2 px-4 font-semibold">Status</th>
-                  <th className="py-2 px-4 font-semibold">Amount</th>
+                  <th className="py-2 px-4 font-semibold">Jumlah</th>
                 </tr>
               </thead>
               <tbody>

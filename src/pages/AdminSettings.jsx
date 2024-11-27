@@ -72,36 +72,36 @@ export default function AdminSettings() {
       <AdminSidebar />
 
       <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
-        <h1 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-4">Admin Settings</h1>
+        <h1 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-4">Pengaturan Admin</h1>
 
         <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-4">
           <div className="flex justify-between items-center">
-            <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Manage Services</h2>
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Kelola Layanan</h2>
 
             <button
               onClick={() => setIsAddModalOpen(true)}
               className="bg-blue-500 text-white px-1 py-2 rounded-md hover:bg-blue-600 text-base md:px-3 md:py-2 md:text-sm inline-flex items-center"
             >
               <FaPlus className="inline mr-2" />
-              Add Service
+              Tambah Layanan
             </button>
           </div>
-          {/* Add Service Modal */}
+          {/* Modal Tambah Layanan */}
           {isAddModalOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
               <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 w-4/5 sm:w-1/3">
-                <h3 className="text-lg font-semibold mb-4">Add New Service</h3>
+                <h3 className="text-lg font-semibold mb-4">Tambah Layanan Baru</h3>
                 <div className="flex flex-col space-y-4">
                   <input
                     type="text"
-                    placeholder="Service Name"
+                    placeholder="Nama Layanan"
                     className="px-3 py-2 border rounded-md"
                     value={newService.name}
                     onChange={(e) => setNewService({ ...newService, name: e.target.value })}
                   />
                   <input
                     type="number"
-                    placeholder="Price"
+                    placeholder="Harga"
                     className="px-3 py-2 border rounded-md"
                     value={newService.price}
                     onChange={(e) => setNewService({ ...newService, price: Number(e.target.value) })}
@@ -111,13 +111,13 @@ export default function AdminSettings() {
                       onClick={() => setIsAddModalOpen(false)}
                       className="bg-gray-500 text-white px-3 py-2 rounded-md hover:bg-gray-600"
                     >
-                      Cancel
+                      Batal
                     </button>
                     <button
                       onClick={handleAddService}
                       className="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600"
                     >
-                      Add
+                      Tambah
                     </button>
                   </div>
                 </div>
@@ -125,22 +125,22 @@ export default function AdminSettings() {
             </div>
           )}
 
-          {/* Edit Service Modal */}
+          {/* Modal Edit Layanan */}
           {isEditModalOpen && editingService && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
               <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 w-4/5 sm:w-1/3">
-                <h3 className="text-lg font-semibold mb-4">Edit Service</h3>
+                <h3 className="text-lg font-semibold mb-4">Edit Layanan</h3>
                 <div className="flex flex-col space-y-4">
                   <input
                     type="text"
-                    placeholder="Service Name"
+                    placeholder="Nama Layanan"
                     className="px-3 py-2 border rounded-md"
                     value={editingService.name}
                     onChange={(e) => setEditingService({ ...editingService, name: e.target.value })}
                   />
                   <input
                     type="number"
-                    placeholder="Price"
+                    placeholder="Harga"
                     className="px-3 py-2 border rounded-md"
                     value={editingService.price}
                     onChange={(e) => setEditingService({ ...editingService, price: Number(e.target.value) })}
@@ -150,13 +150,13 @@ export default function AdminSettings() {
                       onClick={() => setIsEditModalOpen(false)}
                       className="bg-gray-500 text-white px-3 py-2 rounded-md hover:bg-gray-600"
                     >
-                      Cancel
+                      Batal
                     </button>
                     <button
                       onClick={handleEditService}
                       className="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600"
                     >
-                      Save
+                      Simpan
                     </button>
                   </div>
                 </div>
@@ -165,13 +165,13 @@ export default function AdminSettings() {
           )}
 
           <div>
-            <h3 className="text-lg font-semibold mb-2">Current Services</h3>
+            <h3 className="text-lg font-semibold mb-2">Layanan Saat Ini</h3>
             <table className="w-full">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="py-2 px-2 sm:px-4 text-left">Service Name</th>
-                  <th className="py-2 px-2 sm:px-4 text-left">Price</th>
-                  <th className="py-2 px-2 sm:px-4 text-left">Actions</th>
+                  <th className="py-2 px-2 sm:px-4 text-left">Nama Layanan</th>
+                  <th className="py-2 px-2 sm:px-4 text-left">Harga</th>
+                  <th className="py-2 px-2 sm:px-4 text-left">Aksi</th>
                 </tr>
               </thead>
               <tbody>

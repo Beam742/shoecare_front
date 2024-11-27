@@ -1,6 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { HiStar as StarIcon, HiCheckCircle as Check, HiMenu as Menu, HiX as Close } from "react-icons/hi"
 import { GiConverseShoe } from "react-icons/gi"
+import axios from "axios"
 
 import HeroImg from "./assets/hero_img.jpg"
 import AboutImg from "./assets/about_img.jpg"
@@ -8,6 +9,20 @@ import { Link } from "react-router-dom"
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [services, setServices] = useState([])
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/jasa`)
+        setServices(response.data)
+      } catch (error) {
+        console.error("Error fetching services:", error)
+      }
+    }
+
+    fetchServices()
+  }, [])
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -27,22 +42,22 @@ export default function App() {
           </button>
           <div className="hidden md:flex space-x-5 items-center text-base md:text-lg">
             <a href="#" className="text-gray-800 hover:text-blue-600">
-              Home
+              Beranda
             </a>
             <a href="#service" className="text-gray-800 hover:text-blue-600">
-              Services
+              Layanan
             </a>
             <a href="#about" className="text-gray-800 hover:text-blue-600">
-              About
+              Tentang
             </a>
             <a href="#footer" className="text-gray-800 hover:text-blue-600">
-              Contact
+              Kontak
             </a>
             <Link
               to={"/auth"}
               className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300"
             >
-              Login
+              Masuk
             </Link>
           </div>
         </div>
@@ -63,35 +78,35 @@ export default function App() {
             className="text-gray-800 hover:text-blue-600 w-full text-center py-2 rounded-lg"
             onClick={toggleMenu}
           >
-            Home
+            Beranda
           </a>
           <a
             href="#service"
             className="text-gray-800 hover:text-blue-600 w-full text-center py-2 rounded-lg"
             onClick={toggleMenu}
           >
-            Services
+            Layanan
           </a>
           <a
             href="#about"
             className="text-gray-800 hover:text-blue-600 w-full text-center py-2 rounded-lg"
             onClick={toggleMenu}
           >
-            About
+            Tentang
           </a>
           <a
             href="#footer"
             className="text-gray-800 hover:text-blue-600 w-full text-center py-2 rounded-lg"
             onClick={toggleMenu}
           >
-            Contact
+            Kontak
           </a>
           <Link
             to={"/auth"}
             className="bg-blue-600 text-white w-full text-center py-2 rounded-lg hover:bg-blue-700 transition duration-300"
             onClick={toggleMenu}
           >
-            Login
+            Masuk
           </Link>
         </div>
       </div>
@@ -101,19 +116,19 @@ export default function App() {
         <div className="container mx-auto px-6 py-24 md:py-32">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-8 md:mb-0">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">Your Shoes Deserve the Best Care</h1>
-              <p className="text-xl mb-6">Professional shoe cleaning and restoration services</p>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">Sepatu Anda Layak Mendapatkan Perawatan Terbaik</h1>
+              <p className="text-xl mb-6">Layanan pembersihan dan restorasi sepatu profesional</p>
               <Link
                 to={"/auth"}
                 className="bg-white text-blue-600 font-bold py-3 px-6 rounded-full hover:bg-blue-100 transition duration-300"
               >
-                Book Now
+                Pesan Sekarang
               </Link>
             </div>
             <div className="md:w-1/2">
               <img
                 src={HeroImg}
-                alt="Shoe cleaning process"
+                alt="Proses pembersihan sepatu"
                 width={600}
                 height={400}
                 className="rounded-lg shadow-xl"
@@ -126,19 +141,21 @@ export default function App() {
       {/* About Us Section */}
       <section className="py-16 bg-white" id="about">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-8">About Us</h2>
+          <h2 className="text-3xl font-bold text-center mb-8">Tentang Kami</h2>
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-8 md:mb-0">
-              <img src={AboutImg} alt="Our team" width={600} height={400} className="rounded-lg shadow-lg" />
+              <img src={AboutImg} alt="Tim kami" width={600} height={400} className="rounded-lg shadow-lg" />
             </div>
             <div className="md:w-1/2 md:pl-12">
               <p className="text-xl leading-relaxed mb-4">
-                At ShoeCare, we're passionate about keeping your footwear in pristine condition. With years of
-                experience and a dedicated team of experts, we offer top-notch shoe cleaning and restoration services.
+                Di ShoeCare, kami bersemangat untuk menjaga sepatu Anda dalam kondisi prima. Dengan pengalaman
+                bertahun-tahun dan tim ahli yang berdedikasi, kami menawarkan layanan pembersihan dan restorasi sepatu
+                terbaik.
               </p>
               <p className="text-xl leading-relaxed">
-                Our state-of-the-art techniques and eco-friendly products ensure that your shoes not only look great but
-                also last longer. Trust us to give your beloved shoes the care they deserve.
+                Teknik canggih dan produk ramah lingkungan kami memastikan sepatu Anda tidak hanya terlihat bagus tetapi
+                juga bertahan lebih lama. Percayakan kepada kami untuk memberikan perawatan terbaik bagi sepatu
+                kesayangan Anda.
               </p>
             </div>
           </div>
@@ -148,13 +165,31 @@ export default function App() {
       {/* Step by Step Section */}
       <section className="py-16 bg-gray-100" id="step">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Process</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Proses Kami</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "Drop Off", description: "Bring your shoes to our store or schedule a pickup" },
-              { title: "Inspection", description: "We assess your shoes and determine the best cleaning method" },
-              { title: "Cleaning", description: "Our experts clean and restore your shoes with care" },
-              { title: "Pick Up", description: "Collect your refreshed shoes or have them delivered" },
+              {
+                title: "Buat Pesanan",
+                description: "Mulai dengan membuat pesanan melalui website kami dan pilih layanan yang diinginkan.",
+              },
+              {
+                title: "Verifikasi Pembayaran",
+                description: "Admin kami akan memverifikasi pembayaran Anda untuk memastikan transaksi berhasil.",
+              },
+              {
+                title: "Penjemputan",
+                description:
+                  "Setelah pembayaran diverifikasi, sepatu Anda akan dijadwalkan untuk dijemput oleh tim kami.",
+              },
+              {
+                title: "Proses Pengerjaan",
+                description: "Sepatu Anda akan dibawa ke toko kami untuk diproses sesuai layanan yang dipilih.",
+              },
+              {
+                title: "Selesai",
+                description:
+                  "Setelah pengerjaan selesai, Anda dapat mengambil sepatu di toko atau meminta pengantaran.",
+              },
             ].map((step, index) => (
               <div key={index} className="bg-white p-6 rounded-lg shadow-md">
                 <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">
@@ -171,15 +206,15 @@ export default function App() {
       {/* Our Advantages Section */}
       <section className="py-16 bg-white" id="adventage">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Mengapa Memilih Kami</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              "Expert technicians",
-              "Eco-friendly products",
-              "Quick turnaround",
-              "Affordable prices",
-              "Satisfaction guaranteed",
-              "Free pickup and delivery",
+              "Pekerja ahli",
+              "Produk ramah lingkungan",
+              "Waktu pengerjaan cepat",
+              "Harga terjangkau",
+              "Kepuasan terjamin",
+              "Penjemputan dan pengantaran gratis",
             ].map((advantage, index) => (
               <div
                 key={index}
@@ -196,20 +231,13 @@ export default function App() {
       {/* Our Services Section */}
       <section className="py-16 bg-gray-100" id="service">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Services</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Layanan Kami</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: "Deep Cleaning", price: "$30" },
-              { title: "Leather Conditioning", price: "$25" },
-              { title: "Sole Restoration", price: "$40" },
-              { title: "Color Touch-up", price: "$35" },
-              { title: "Waterproofing", price: "$20" },
-              { title: "Deodorizing", price: "$15" },
-            ].map((service, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                <p className="text-gray-600 mb-4">Starting from</p>
-                <p className="text-2xl font-bold text-blue-600">{service.price}</p>
+            {services.map((service) => (
+              <div key={service.id} className="bg-white p-6 rounded-lg shadow-md">
+                <h3 className="text-xl font-semibold mb-2">{service.nama_jasa}</h3>
+                <p className="text-gray-600 mb-4">Mulai dari</p>
+                <p className="text-2xl font-bold text-blue-600">Rp{service.harga}</p>
               </div>
             ))}
           </div>
@@ -219,12 +247,15 @@ export default function App() {
       {/* Testimonial Section */}
       <section className="py-16 bg-white" id="testi">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Apa Kata Pelanggan Kami</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { name: "John D.", text: "Incredible service! My shoes look brand new." },
-              { name: "Sarah M.", text: "Fast, efficient, and very professional. Highly recommended!" },
-              { name: "Mike R.", text: "The team went above and beyond to restore my favorite pair." },
+              { name: "Budi Santoso", text: "Layanan yang sangat memuaskan! Sepatu saya terlihat seperti baru." },
+              { name: "Dewi Lestari", text: "Cepat, efisien, dan sangat profesional. Sangat direkomendasikan!" },
+              {
+                name: "Andi Prasetyo",
+                text: "Shoecare melakukan lebih dari yang diharapkan untuk merestorasi sepatu kesayangan saya.",
+              },
             ].map((testimonial, index) => (
               <div key={index} className="bg-gray-100 p-6 rounded-lg">
                 <div className="flex mb-4">
@@ -246,41 +277,41 @@ export default function App() {
           <div className="flex flex-wrap justify-between">
             <div className="w-full md:w-1/4 mb-6 md:mb-0">
               <h3 className="text-xl font-bold mb-4">ShoeCare</h3>
-              <p>Keeping your shoes fresh and clean since 2010</p>
+              <p>Menjaga sepatu Anda tetap segar dan bersih</p>
             </div>
             <div className="w-full md:w-1/4 mb-6 md:mb-0">
-              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+              <h4 className="text-lg font-semibold mb-4">Tautan Cepat</h4>
               <ul>
                 <li className="mb-2">
                   <a href="#" className="hover:underline">
-                    Home
+                    Beranda
                   </a>
                 </li>
                 <li className="mb-2">
                   <a href="#" className="hover:underline">
-                    Services
+                    Layanan
                   </a>
                 </li>
                 <li className="mb-2">
                   <a href="#" className="hover:underline">
-                    About Us
+                    Tentang Kami
                   </a>
                 </li>
                 <li className="mb-2">
                   <a href="#" className="hover:underline">
-                    Contact
+                    Kontak
                   </a>
                 </li>
               </ul>
             </div>
             <div className="w-full md:w-1/4 mb-6 md:mb-0">
-              <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-              <p className="mb-2">123 Shoe Street, Cleanville</p>
-              <p className="mb-2">Phone: (555) 123-4567</p>
+              <h4 className="text-lg font-semibold mb-4">Hubungi Kami</h4>
+              <p className="mb-2">123 Jalan Sepatu, Cleanville</p>
+              <p className="mb-2">Telepon: (555) 123-4567</p>
               <p>Email: info@shoecare.com</p>
             </div>
             <div className="w-full md:w-1/4">
-              <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
+              <h4 className="text-lg font-semibold mb-4">Ikuti Kami</h4>
               <div className="flex space-x-4">
                 <a href="#" className="hover:text-gray-300">
                   Facebook
@@ -295,7 +326,7 @@ export default function App() {
             </div>
           </div>
           <div className="border-t border-blue-500 mt-8 pt-6 text-center">
-            <p>&copy; 2023 ShoeCare. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} ShoeCare. Hak cipta dilindungi undang-undang.</p>
           </div>
         </div>
       </footer>

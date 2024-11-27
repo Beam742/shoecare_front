@@ -44,28 +44,32 @@ export default function UserProfile() {
   const handleSave = async () => {
     try {
       await axios.put(`${import.meta.env.VITE_API_URL}/user-profile/${userId}`, customerInfo)
-      alert("Profile updated successfully!")
+      alert("Profil berhasil diubah!")
       setIsEditing(false)
     } catch (error) {
-      alert("Failed to update profile")
+      alert("Gagal mengubah profil")
     }
   }
 
   const handlePasswordChange = async () => {
+    if (!passwordInfo.newPassword || !passwordInfo.confirmNewPassword) {
+      alert("Kata sandi baru dan konfirmasi kata sandi tidak boleh kosong")
+      return
+    }
     if (passwordInfo.newPassword !== passwordInfo.confirmNewPassword) {
-      alert("New password and confirm password do not match")
+      alert("Kata sandi baru dan konfirmasi kata sandi tidak cocok")
       return
     }
     try {
       await axios.put(`${import.meta.env.VITE_API_URL}/change-password/${userId}`, passwordInfo)
-      alert("Password changed successfully!")
+      alert("Kata sandi berhasil diubah!")
       setPasswordInfo({
         currentPassword: "",
         newPassword: "",
         confirmNewPassword: "",
       })
     } catch (error) {
-      alert("Failed to change password")
+      alert("Gagal mengubah kata sandi")
     }
   }
 
@@ -95,13 +99,13 @@ export default function UserProfile() {
                 className={`py-2 px-4 ${activeTab === "personal" ? "border-b-2 border-black" : "text-gray-600"}`}
                 onClick={() => setActiveTab("personal")}
               >
-                Personal Information
+                Informasi Pribadi
               </button>
               <button
                 className={`py-2 px-4 ${activeTab === "security" ? "border-b-2 border-black" : "text-gray-600"}`}
                 onClick={() => setActiveTab("security")}
               >
-                Security
+                Keamanan
               </button>
             </div>
           </div>
@@ -110,48 +114,48 @@ export default function UserProfile() {
             <div className="mt-4">
               <form>
                 <div className="space-y-4">
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <label className="text-right col-span-1">Full Name</label>
+                  <div className="grid grid-cols-1 md:grid-cols-4 items-center md:gap-4">
+                    <label className="md:text-right">Nama Lengkap</label>
                     <input
                       type="text"
                       name="full_name"
                       value={customerInfo.full_name}
                       onChange={handleInputChange}
                       disabled={!isEditing}
-                      className="col-span-3 border border-gray-300 rounded-md px-3 py-2 disabled:bg-slate-300"
+                      className="md:col-span-3 border border-gray-300 rounded-md px-3 py-2 disabled:bg-slate-300"
                     />
                   </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <label className="text-right col-span-1">Email</label>
+                  <div className="grid grid-cols-1 md:grid-cols-4 items-center md:gap-4">
+                    <label className="md:text-right">Email</label>
                     <input
                       type="email"
                       name="email"
                       value={customerInfo.email}
                       onChange={handleInputChange}
                       disabled={!isEditing}
-                      className="col-span-3 border border-gray-300 rounded-md px-3 py-2 disabled:bg-slate-300"
+                      className="md:col-span-3 border border-gray-300 rounded-md px-3 py-2 disabled:bg-slate-300"
                     />
                   </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <label className="text-right col-span-1">Phone</label>
+                  <div className="grid grid-cols-1 md:grid-cols-4 items-center md:gap-4">
+                    <label className="md:text-right">Telepon</label>
                     <input
                       type="text"
                       name="phone"
                       value={customerInfo.phone}
                       onChange={handleInputChange}
                       disabled={!isEditing}
-                      className="col-span-3 border border-gray-300 rounded-md px-3 py-2 disabled:bg-slate-300"
+                      className="md:col-span-3 border border-gray-300 rounded-md px-3 py-2 disabled:bg-slate-300"
                     />
                   </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <label className="text-right col-span-1">Address</label>
+                  <div className="grid grid-cols-1 md:grid-cols-4 items-center md:gap-4">
+                    <label className="md:text-right">Alamat</label>
                     <input
                       type="text"
                       name="address"
                       value={customerInfo.address}
                       onChange={handleInputChange}
                       disabled={!isEditing}
-                      className="col-span-3 border border-gray-300 rounded-md px-3 py-2 disabled:bg-slate-300"
+                      className="md:col-span-3 border border-gray-300 rounded-md px-3 py-2 disabled:bg-slate-300"
                     />
                   </div>
                 </div>
@@ -162,14 +166,14 @@ export default function UserProfile() {
                       onClick={() => setIsEditing(false)}
                       className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
                     >
-                      Cancel
+                      Batal
                     </button>
                     <button
                       type="button"
                       onClick={handleSave}
                       className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
                     >
-                      Save
+                      Simpan
                     </button>
                   </div>
                 ) : (
@@ -179,7 +183,7 @@ export default function UserProfile() {
                       onClick={() => setIsEditing(true)}
                       className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
                     >
-                      Edit Profile
+                      Edit Profil
                     </button>
                   </div>
                 )}
@@ -190,9 +194,9 @@ export default function UserProfile() {
           {activeTab === "security" && (
             <div className="mt-4">
               <div className="space-y-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <label className="text-right col-span-1">Current Password</label>
-                  <div className="col-span-3 relative">
+                <div className="grid grid-cols-1 md:grid-cols-4 items-center md:gap-4">
+                  <label className="md:text-right">Kata Sandi Saat Ini</label>
+                  <div className="md:col-span-3 relative">
                     <input
                       type={showCurrentPassword ? "text" : "password"}
                       name="currentPassword"
@@ -213,9 +217,9 @@ export default function UserProfile() {
                     </button>
                   </div>
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <label className="text-right col-span-1">New Password</label>
-                  <div className="col-span-3 relative">
+                <div className="grid grid-cols-1 md:grid-cols-4 items-center md:gap-4">
+                  <label className="md:text-right">Kata Sandi Baru</label>
+                  <div className="md:col-span-3 relative">
                     <input
                       type={showNewPassword ? "text" : "password"}
                       name="newPassword"
@@ -236,9 +240,9 @@ export default function UserProfile() {
                     </button>
                   </div>
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <label className="text-right col-span-1">Confirm Password</label>
-                  <div className="col-span-3 relative">
+                <div className="grid grid-cols-1 md:grid-cols-4 items-center md:gap-4">
+                  <label className="md:text-right">Konfirmasi Kata Sandi</label>
+                  <div className="md:col-span-3 relative">
                     <input
                       type={showConfirmPassword ? "text" : "password"}
                       name="confirmNewPassword"
@@ -265,7 +269,7 @@ export default function UserProfile() {
                     onClick={handlePasswordChange}
                     className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
                   >
-                    Change Password
+                    Ganti Kata Sandi
                   </button>
                 </div>
               </div>

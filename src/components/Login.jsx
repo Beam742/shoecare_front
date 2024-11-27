@@ -19,7 +19,7 @@ const Login = () => {
         window.location.href = "/user/dashboard"
       }
     } catch (error) {
-      alert("Login failed")
+      alert("Login gagal")
     }
   }
 
@@ -27,7 +27,7 @@ const Login = () => {
     <form className="space-y-6" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-          Email address
+          Alamat Email
         </label>
         <div className="relative">
           <input
@@ -46,7 +46,7 @@ const Login = () => {
       </div>
       <div>
         <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-          Password
+          Kata Sandi
         </label>
         <div className="relative">
           <input
